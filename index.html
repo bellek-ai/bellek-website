@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bellek — Mobile Software</title>
+  <meta name="description" content="Bellek is a California-based software company building Pollcy, a mobile app for polling on trending news." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0c0e;
+      --surface: #141416;
+      --border: #222226;
+      --text: #f0f0f0;
+      --muted: #888;
+      --accent: #fff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 999px;
+      transition: opacity 0.15s;
+    }
+
+    .btn:hover { opacity: 0.85; }
+
+    /* ── SECTION WRAPPER ── */
+    section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── FEATURE GRID ── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── ABOUT ── */
+    .about-body {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    /* ── SUPPORT ── */
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .support-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .support-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .support-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .support-card a {
+      font-size: 0.88rem;
+      color: #aaa;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+    }
+
+    .support-card a:hover { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #444;
+    }
+
+    footer a { color: #666; }
+    footer a:hover { color: #aaa; }
+    footer .sep { margin: 0 0.6rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">BELLEK</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#support">Support</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-label">Introducing Pollcy</span>
+    <h1>Your opinion, backed by data</h1>
+    <p>A mobile app that turns today's trending news into polls — and shows you exactly how different demographics voted.</p>
+    <a class="btn" href="#support">Contact Us</a>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-label">The App</div>
+    <h2>How Pollcy works</h2>
+    <p class="lead">Pollcy automatically generates polls from real news stories and surfaces the results in ways that are actually meaningful.</p>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">📰</div>
+        <h3>News-driven polls</h3>
+        <p>Polls are generated daily from trending headlines so you're always voting on what matters right now.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Demographic breakdown</h3>
+        <p>See how age, location, and other demographics shape opinion — not just the overall vote count.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Live results</h3>
+        <p>Vote and watch results update in real time as more people weigh in throughout the day.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Anonymous & private</h3>
+        <p>Your individual votes are anonymized after the voting window closes. No one can see how you voted.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <h2>About Bellek</h2>
+    <p class="about-body">
+      Bellek is a California-based software company focused on building products that help people engage with the world around them. Pollcy is our first mobile application, available on iOS.
+      <br /><br />
+      We believe that understanding how others think — across backgrounds and demographics — makes for better conversations and more informed opinions.
+    </p>
+  </section>
+
+  <!-- SUPPORT -->
+  <section id="support">
+    <div class="section-label">Support</div>
+    <h2>Get in touch</h2>
+    <div class="support-grid">
+      <div class="support-card">
+        <h3>General Inquiries</h3>
+        <p>Questions about Bellek or Pollcy?</p>
+        <a href="mailto:info@bellek.ai">info@bellek.ai</a>
+      </div>
+      <div class="support-card">
+        <h3>App Support</h3>
+        <p>Need help with the Pollcy app?</p>
+        <a href="mailto:info@bellek.ai">info@bellek.ai</a>
+      </div>
+      <div class="support-card">
+        <h3>Privacy</h3>
+        <p>Read our privacy policy for Pollcy.</p>
+        <a href="https://pollcy.com/privacy-policy">View Privacy Policy</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Bellek LLC. All rights reserved.</span>
+    <span class="sep">&middot;</span>
+    <a href="https://pollcy.com/privacy-policy">Privacy Policy</a>
+    <span class="sep">&middot;</span>
+    <a href="mailto:info@bellek.ai">info@bellek.ai</a>
+  </footer>
+
+</body>
+</html>
